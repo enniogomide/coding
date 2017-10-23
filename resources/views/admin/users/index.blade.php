@@ -1,0 +1,1 @@
+<h1>Index admin users</h1>
