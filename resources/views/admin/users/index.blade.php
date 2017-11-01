@@ -1,1 +1,34 @@
-<h1>Index admin users</h1>
+@extends('layouts.admin')
+
+@section('content')
+<h1>Administração de usuários</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>email</th>
+		<th>Papel</th>
+		<th>Situação</th>
+		<th>Incluído em</th>
+		<th>Atualizado em</th>
+      </tr>
+    </thead>
+    <tbody>
+		@if($users)
+			@foreach($users as $user)
+				<tr>
+					<td>{{$user->id}}</td>
+					<td>{{$user->name}}</td>
+					<td>{{$user->email}}</td>
+					<td>{{$user->role->name}}</td>
+					<td>{{$user->is_active == 1 ? 'Ativo' : 'Inativo'}}</td>
+					<td>{{$user->created_at}}</td>
+					<td>{{$user->updated_at}}</td>
+				</tr>
+			@endforeach
+		@endif
+    </tbody>
+  </table>
+@endsection
+@section('footer')

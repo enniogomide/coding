@@ -1,1 +1,7 @@
-<h1>show scren</h1>
+@extends('layouts.admin')
+
+@section('content')
+<h1>Exibir Usuário</h1>
+
+@endsection
+@section('footer')
