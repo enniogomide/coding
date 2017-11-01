@@ -23,7 +23,7 @@
     		{!! Form::label('is_active', 'Situação:') !!} {!! Form::select('is_active', array(1=>'Ativo', 0=>'Inativo'), 0, ['class'=>'form-control']) !!}
     	</div>
 		<div class="form-group">
-    		{!! Form::label('foto', 'foto:') !!} {!! Form::file('foto', null, ['class'=>'form-control']) !!}
+    		{!! Form::label('photo_id', 'foto:') !!} {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
     	</div>		
 		<br><br>
 	
