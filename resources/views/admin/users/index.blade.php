@@ -1,6 +1,15 @@
 @extends('layouts.admin')
 
 @section('content')
+	@if (Session::has('Usuário Incluído'))
+		<p class='bg-danger'>{{session('Usuário Incluído')}}</p>
+	@endif
+	@if (Session::has('Usuário Atualizado'))
+		<p class='bg-danger'>{{session('Usuário Atualizado')}}</p>
+	@endif
+	@if (Session::has('Usuário Excluído'))
+		<p class='bg-danger'>{{session('Usuário Excluído')}}</p>
+	@endif	
 <h1>Administração de usuários</h1>
   <table class="table table-striped">
     <thead>

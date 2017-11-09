@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests;
 use App\Http\Requests\UsersEditRequest;
 use App\Http\Requests\UserRequest;
 use App\Photo;
 use App\User;
 use App\Role;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use Illuminate\Support\Facades\Session;
 
 class AdminUsersController extends Controller
 {
@@ -54,7 +54,9 @@ class AdminUsersController extends Controller
 			$input['photo_id'] = $photo->id;
 		}
 		$input['password'] = bcrypt($request->password);
-		User::create($input);
+		$user = User::create($input);
+		$msg = "Usuário: " . $user->id . " - " . $user->name . " foi Incluído";
+		Session::flash('Usuário Incluído',$msg);
 		return redirect('admin/users');
 		
     }
@@ -96,7 +98,6 @@ class AdminUsersController extends Controller
     public function update(UsersEditRequest $request, $id)
     {
         //
-//		return $request->all();
 
 		if (trim($request->password) == ''){
 			$input = $request->except('password');
@@ -108,20 +109,24 @@ class AdminUsersController extends Controller
 		$user = User::findOrFail($id);
 		
 		if ($file = $request->file('photo_id')){
+			if ($user->photo_id <> 0){
+				if (trim($user->photo->file) <> '') {
+					unlink(public_path() . $user->photo->file);
+				}	
+			}
 			$name = time() . $file->getClientOriginalName();
 			$file->move('images', $name);
 			$photo = Photo::create(['file'=>$name]);
 			$input['photo_id'] = $photo->id;
 		} else {
-			$name = $user->photo->name;
+			if ($user->photo_id <> 0){
+				$name = $user->photo->name;
+			}
 		}
-/*		if (!($request->password)){
-			$input['password'] = $user->password;
-		} else {
-			$input['password'] = bcrypt($request->password);
-		}
-*/		
-        $user->update($input);
+	
+		$user->update($input);
+		$msg = "Usuário: " . $id . " - " . $user['name'] . " foi Atualizado";
+		Session::flash('Usuário Atualizado',$msg);
         return redirect('/admin/users');
     }
 
@@ -133,11 +138,16 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
-		return $id;
-		
-//        $user = User::findOrFail($id);
-//        $user->delete();
-//        return redirect('/posts');		
+		$user = User::findOrFail($id);
+		if ($user->photo_id <> 0){
+			if (trim($user->photo->file) <> '') {
+				unlink(public_path() . $user->photo->file);
+			}	
+		}
+		$msg = "Usuário: " . $user->id . " - " . $user->name . " foi excluído";
+		Session::flash('Usuário Excluído',$msg);
+		$user->delete();
+		return redirect('/admin/users');
+			
     }
 }

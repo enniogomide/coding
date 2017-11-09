@@ -28,7 +28,15 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+	/* 
+	if ($this->user->is_active == 0) {
+		protected $redirectTo = '/';
+	} 
+	if ($this->user->role_id == 1) {
+		protected $redirectTo = '/admin';
+	}
+	*/
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new authentication controller instance.
@@ -67,6 +75,11 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+			/*
+			* incluido para fazer melhor controle dos dados adicionais.
+			*/
+			'is_active' => 1,
+			'role_id' => 3,
         ]);
     }
 }

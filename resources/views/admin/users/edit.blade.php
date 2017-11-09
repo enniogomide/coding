@@ -6,11 +6,7 @@
 	<div class="col-sm-2">
 		<img height="42" src="{{$user->photo ? $user->photo->file : '/images/no-foto.jpg'}}" alt="" class="img-responsive img-rounded">
 		<br>
-	{!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy', $user->id]]) !!}
-		<div class="form-group">    	
-			{!! Form::submit('Excluir Registro', ['class'=>'btn btn-danger']) !!}
-		</div>
-     {!! Form::close() !!} 
+
 	</div>
 	<div class="col-sm-9">
 
@@ -36,14 +32,19 @@
 			<div class="form-group">
 				{!! Form::label('photo_id', 'foto:') !!} {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
 			</div>		
-			<br>
-		
 			<div class="form-group">    	
-				{!! Form::submit('Alterar Usuário', ['class'=>'btn btn-primary']) !!}
+				{!! Form::submit('Alterar Usuário', ['class'=>'btn btn-primary col-sm-6']) !!}
 			</div>
 			
 		{!! Form::close() !!}
-		
+		{!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy', $user->id]]) !!}
+			<div class="form-group">    	
+				{!! Form::submit('Excluir Usuário', ['class'=>'btn btn-danger col-sm-6']) !!}
+			</div>
+		{!! Form::close() !!}
+	</div>
+	<div class="col-sm-12">	
+		<br>
 		@include('includes.form_errors')
 	</div>	
 	
