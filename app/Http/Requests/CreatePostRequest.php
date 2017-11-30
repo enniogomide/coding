@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class UsersEditRequest extends Request
+class CreatePostRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,8 @@ class UsersEditRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        // return false;
+		return true;
     }
 
     /**
@@ -25,10 +26,10 @@ class UsersEditRequest extends Request
     {
         return [
             //
-			'name' => 'required',
-			'email' => 'required|email',
-			'role_id' => 'required',
-			'is_active' => 'required'
+			'title' 		=> 'required',
+			'body' 			=> 'required',
+//			'category_id' 	=> 'required',
+			'photo_id' 		=> 'required'
         ];
     }
 }

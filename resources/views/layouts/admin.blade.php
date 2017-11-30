@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin</title>
+    <title>Coding</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
@@ -24,7 +24,15 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style>
+        body {
+            font-family: 'Lato';
+        }
 
+        .fa-btn {
+            margin-right: 6px;
+        }
+    </style>
 
 
 </head>
@@ -43,6 +51,10 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">Home</a>
+			@if ((Auth::check()) && (Auth::user()->isAdmin()) && (Auth::user()->is_active == 1))
+				<li><a href="{{ url('/admin') }}">Administração</a></li>
+			@endif	
+			
         </div>
         <!-- /.navbar-header -->
 
@@ -93,7 +105,7 @@
                             </li>
 
                             <li>
-                                <a href="{{route('admin.users.create')}}">Incluir Usuário</a>
+                                <a href="{{route('admin.users.create')}}">Novo Usuário</a>
                             </li>
 
                         </ul>
@@ -104,11 +116,11 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/posts">All Posts</a>
+                                <a href="{{route('admin.posts.index')}}">Listar Posts</a>
                             </li>
 
                             <li>
-                                <a href="/posts/create">Create Post</a>
+                                <a href="{{route('admin.posts.create')}}">Novo Post Post</a>
                             </li>
 
                         </ul>

@@ -32,10 +32,12 @@
 				{!! Form::label('photo_id', 'foto destaque:') !!} 
 				{!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
 			</div>		
+		
+		{!! Form::close() !!}
+		{!! Form::open(['method'=>'DELETE', 'action'=>['AdminPostController@destroy', $post->id]]) !!}
 			<div class="form-group">    	
-				{!! Form::submit('Alterar Post', ['class'=>'btn btn-primary col-sm-6']) !!}
+				{!! Form::submit('Excluir Post', ['class'=>'btn btn-danger col-sm-6']) !!}
 			</div>
-			
 		{!! Form::close() !!}
 	</div>
 	<div class="col-sm-12">	
