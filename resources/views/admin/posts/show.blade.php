@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-	<h1>Atualizar Post</h1>
+	<h1>Exibir Post</h1>
 	
 	<div class="col-sm-2">
 		<img height="42" src="{{$post->photo ? $post->photo->file : '/images/no-foto.jpg'}}" alt="" class="img-responsive img-rounded">
@@ -9,7 +9,7 @@
 	</div>
 	<div class="col-sm-9">
 
-		{!! Form::model($post, ['method'=>'PATCH', 'action'=>['AdminPostController@update', $post->id], 'files'=>true]) !!}
+		{!! Form::model($post, ['method'=>'HEAD', 'action'=>['AdminPostController@update', $post->id], 'files'=>true]) !!}
 				{{ csrf_field() }}
 			
 			<div class="form-group">
@@ -22,15 +22,11 @@
 			</div>
 			<div class="form-group">
 				{!! Form::label('category_id',   'Categoria:') !!} 
-				{!! Form::select('category_id', [''=> 'escolha uma opção'], null, ['class'=>'form-control']) !!}
+				{!! Form::select('category_id', [''=> 'escolha uma opção'] + $categories, null, ['class'=>'form-control']) !!}
 			</div>		
 			<div class="form-group">
 				{!! Form::label('user_id',   'Autor:') !!} 
 				{!! Form::select('user_id', [''=> 'escolha uma opção'] + $users, null, ['class'=>'form-control']) !!}
-			</div>		
-			<div class="form-group">
-				{!! Form::label('photo_id', 'foto destaque:') !!} 
-				{!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
 			</div>		
 		
 		{!! Form::close() !!}

@@ -8,6 +8,7 @@ use App\Http\Requests\UpdatePostsRequest;
 use App\Post;
 use App\Photo;
 use App\User;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -37,8 +38,8 @@ class AdminPostController extends Controller
     {
         //
 		$users = User::lists('name', 'id')->all();
-//		$categories = Category::lists('name', 'id')-:where(is_active);
-		return view('admin.posts.create', compact('users'));		
+		$categories = Category::lists('name', 'id')->all();
+		return view('admin.posts.create', compact('users', 'categories'));		
     }
 
     /**
@@ -82,8 +83,9 @@ class AdminPostController extends Controller
         //
 		$post = Post::findOrFail($id);
 		$users = User::lists('name', 'id')->all();
+		$categories = Category::lists('name', 'id')->all();
 		
-		return view('admin.posts.show', compact('post', 'users'));			
+		return view('admin.posts.show', compact('post', 'users', 'categories'));			
     }
 
     /**
@@ -97,8 +99,9 @@ class AdminPostController extends Controller
         //
 		$post = Post::findOrFail($id);
 		$users = User::lists('name', 'id')->all();
+		$categories = Category::lists('name', 'id')->all();
 		
-		return view('admin.posts.edit', compact('post', 'users'));		
+		return view('admin.posts.edit', compact('post', 'users', 'categories'));		
     }
 
     /**

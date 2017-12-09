@@ -33,9 +33,9 @@
 					<td><a href="{{route('admin.posts.show', $post->id)}}"><img width="20" src="{{'/images/App/CRUD_delete.png'}}" alt=""></a></td>
 					<td>{{$post->id}}</td>
 					<td><img width="60" src="{{$post->photo ? $post->photo->file : '/images/no-foto.jpg'}}" alt=""></td>
-					<td>{{$post->category_id}}</td>
+					<td>{{$post->category? $post->category->name : 'sem categoria'}}</td>
 					<td>{{$post->title}}</td>
-					<td>{{$post->user->name}}</td>
+					<td>{{$post->user? $post->user->name : 'sem autor'}}</td>
 					<td>{{$post->created_at}}</td>
 					<td>{{$post->updated_at}}</td>
 				</tr>
