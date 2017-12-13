@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class UserRequest extends Request
+class CategoriesUpdateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,10 +26,7 @@ class UserRequest extends Request
         return [
             //
 			'name' => 'required',
-			'email' => 'required|email',
-			'password' => 'required',
-			'role_id' => 'required',
-			'is_active' => 'required'
+			'body' => 'required'				
         ];
     }
 }

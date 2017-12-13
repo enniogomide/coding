@@ -138,6 +138,9 @@ class AdminPostController extends Controller
 		}
 		
 		$post = $post->update($input);
+		
+		// Auth::user()->posts()->whereId($id)->first()->update($input); outra forma de atualizar
+		
 		$msg = "Post: " . $id . " - " . $post['title'] . " foi Atualizado";
 		Session::flash('Post Atualizado',$msg);
         return redirect('/admin/posts');		

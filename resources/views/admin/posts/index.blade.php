@@ -20,6 +20,7 @@
 		<th>foto</th>
 		<th>Categoria</th>
 		<th>Título</th>
+		<th>Texto</th>
 		<th>Autor</th>
 		<th>Incluído em</th>
 		<th>Atualizado em</th>
@@ -34,7 +35,8 @@
 					<td>{{$post->id}}</td>
 					<td><img width="60" src="{{$post->photo ? $post->photo->file : '/images/no-foto.jpg'}}" alt=""></td>
 					<td>{{$post->category? $post->category->name : 'sem categoria'}}</td>
-					<td>{{$post->title}}</td>
+					<td>{{str_limit($post->title, 20)}}</td>
+					<td>{{str_limit($post->body, 10)}}</td>
 					<td>{{$post->user? $post->user->name : 'sem autor'}}</td>
 					<td>{{$post->created_at}}</td>
 					<td>{{$post->updated_at}}</td>

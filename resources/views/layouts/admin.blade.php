@@ -129,14 +129,14 @@
 
 
                     <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Categories<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Categorias<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/categories">All Categories</a>
+                                <a href="{{route('admin.categories.index')}}">Listar Categorias</a>
                             </li>
 
                             <li>
-                                <a href="/categories/create">Create Category</a>
+                                <a href="{{route('admin.categories.create')}}">Nova Categoria</a>
                             </li>
 
                         </ul>
@@ -148,11 +148,11 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i>Media<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/media">All Media</a>
+                                <a href="{{route('admin.medias.index')}}">Listar mídias</a>
                             </li>
 
                             <li>
-                                <a href="">Upload Media</a>
+                                <a href="#">Upload Media</a>
                             </li>
 
                         </ul>
