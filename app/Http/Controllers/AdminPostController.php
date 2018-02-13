@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\UpdatePostsRequest;
 use App\Post;
+use App\Comment;
 use App\Photo;
 use App\User;
 use App\Category;
@@ -24,7 +25,7 @@ class AdminPostController extends Controller
     public function index()
     {
         //
-        $posts = Post::all();
+        $posts = Post::paginate(20);
 	
         return view('admin.posts.index', compact('posts'));
     }
@@ -37,8 +38,8 @@ class AdminPostController extends Controller
     public function create()
     {
         //
-		$users = User::lists('name', 'id')->all();
-		$categories = Category::lists('name', 'id')->all();
+		$users = User::pluck('name', 'id')->all();
+		$categories = Category::pluck('name', 'id')->all();
 		return view('admin.posts.create', compact('users', 'categories'));		
     }
 
@@ -82,8 +83,8 @@ class AdminPostController extends Controller
     {
         //
 		$post = Post::findOrFail($id);
-		$users = User::lists('name', 'id')->all();
-		$categories = Category::lists('name', 'id')->all();
+		$users = User::pluck('name', 'id')->all();
+		$categories = Category::pluck('name', 'id')->all();
 		
 		return view('admin.posts.show', compact('post', 'users', 'categories'));			
     }
@@ -98,8 +99,8 @@ class AdminPostController extends Controller
     {
         //
 		$post = Post::findOrFail($id);
-		$users = User::lists('name', 'id')->all();
-		$categories = Category::lists('name', 'id')->all();
+		$users = User::pluck('name', 'id')->all();
+		$categories = Category::pluck('name', 'id')->all();
 		
 		return view('admin.posts.edit', compact('post', 'users', 'categories'));		
     }
@@ -123,7 +124,7 @@ class AdminPostController extends Controller
 		
 		if ($file = $request->file('photo_id')){
 			if ($post->photo_id <> 0){
-				if (trim($post->photo->file) <> '') {
+				if (!empty($post->photo->file)) {
 					unlink(public_path() . $post->photo->file);
 				}	
 			}
@@ -165,6 +166,16 @@ class AdminPostController extends Controller
 		Session::flash('Post Excluído',$msg);
 		$post->delete();
 		return redirect('/admin/posts');
+		
+    }
+    public function post($slug)
+    {
+        //
+        $post = Post::findBySlugOrFail($slug);
+        $comments = $post->comments()->whereIsActive(1)->get();
+        $commentsreplies = $post->commentsreplies;
+        
+        return view('post', compact('post', 'comments', 'commentsreplies'));
 		
     }
 }

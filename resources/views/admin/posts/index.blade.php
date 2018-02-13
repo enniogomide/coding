@@ -20,7 +20,8 @@
 		<th>foto</th>
 		<th>Categoria</th>
 		<th>Título</th>
-		<th>Texto</th>
+		<th>Post</th>
+		<th>Comm</th>
 		<th>Autor</th>
 		<th>Incluído em</th>
 		<th>Atualizado em</th>
@@ -36,14 +37,20 @@
 					<td><img width="60" src="{{$post->photo ? $post->photo->file : '/images/no-foto.jpg'}}" alt=""></td>
 					<td>{{$post->category? $post->category->name : 'sem categoria'}}</td>
 					<td>{{str_limit($post->title, 20)}}</td>
-					<td>{{str_limit($post->body, 10)}}</td>
+					<td><a href="{{route('home.post', $post->slug)}}">View</a></td>
+					<td><a href="{{route('admin.comments.index')}}">View</a></td>
 					<td>{{$post->user? $post->user->name : 'sem autor'}}</td>
-					<td>{{$post->created_at}}</td>
-					<td>{{$post->updated_at}}</td>
+					<td>{{$post->created_at->format('d/m/Y H:i')}}</td>
+					<td>{{$post->updated_at->format('d/m/Y H:i')}}</td>
 				</tr>
 			@endforeach
 		@endif
     </tbody>
   </table>
+	<div class="row">
+			<div class="col-sm-6 col-sm-offset-5">
+				{{$posts->render()}}
+			</div>
+	</div>
 @endsection
 @section('footer')

@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
+
+	@include('includes.tinyeditor')
+
 	<h1>Atualizar Post</h1>
 	
 	<div class="col-sm-2">

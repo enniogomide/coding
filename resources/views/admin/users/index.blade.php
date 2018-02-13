@@ -36,8 +36,8 @@
 					<td>{{$user->email}}</td>
 					<td>{{$user->role->name}}</td>
 					<td>{{$user->is_active == 1 ? 'Ativo' : 'Inativo'}}</td>
-					<td>{{$user->created_at}}</td>
-					<td>{{$user->updated_at}}</td>
+					<td>{{$user->created_at->format('d/m/Y H:i')}}</td>
+					<td>{{$user->updated_at->format('d/m/Y H:i')}}</td>
 				</tr>
 			@endforeach
 		@endif

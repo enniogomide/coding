@@ -33,7 +33,7 @@
             margin-right: 6px;
         }
     </style>
-
+	@yield('styles')
 
 </head>
 
@@ -122,6 +122,9 @@
                             <li>
                                 <a href="{{route('admin.posts.create')}}">Novo Post Post</a>
                             </li>
+                            <li>
+                                <a href="{{route('admin.comments.index')}}">Listar Comentários</a>
+                            </li>                            
 
                         </ul>
                         <!-- /.nav-second-level -->
@@ -145,14 +148,14 @@
 
 
                     <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Media<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Midias<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="{{route('admin.medias.index')}}">Listar mídias</a>
                             </li>
 
                             <li>
-                                <a href="#">Upload Media</a>
+                                <a href="{{route('admin.medias.create')}}">Carregar Medias</a>
                             </li>
 
                         </ul>
@@ -327,6 +330,9 @@
 <!-- jQuery -->
 <script src="{{asset('js/libs.js')}}"></script>
 
+
+@yield('scripts')
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js"></script>
 
 @yield('footer')
 

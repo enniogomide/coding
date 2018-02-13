@@ -32,7 +32,7 @@
 					<td>{{$category->id}}</td>
 					<td>{{str_limit($category->name, 10)}}</td>
 					<td>{{str_limit($category->body, 10)}}</td>
-					<td>{{$category->created_at}}</td>
+					<td>{{$category->created_at->format('d/m/Y H:i')}}</td>
 				</tr>
 			@endforeach
 		@endif

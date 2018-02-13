@@ -27,9 +27,9 @@ class CreatePostRequest extends Request
         return [
             //
 			'title' 		=> 'required',
-			'body' 			=> 'required',
+			'body' 			=> 'required'
 //			'category_id' 	=> 'required',
-			'photo_id' 		=> 'required'
+//			'photo_id' 		=> 'required'
         ];
     }
 }

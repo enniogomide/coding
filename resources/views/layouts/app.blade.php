@@ -50,7 +50,7 @@
                     <li><a href="{{ url('/') }}">Home</a></li>
 					@if ((Auth::check()) && (Auth::user()->isAdmin()) && (Auth::user()->is_active == 1))
 						<li><a href="{{ url('/admin') }}">Administração</a></li>
-					@endif	
+					@endif
 
 		        </ul>
 
